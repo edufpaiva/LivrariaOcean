@@ -144,4 +144,11 @@ public class MainActivity extends AppCompatActivity implements Request.RequestLi
         hideLoad(livros);
     }
 
+
+    public void description(View v){
+        setContentView(R.layout.book_description);
+
+
+    }
+
 }
