@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-
+    private OnItemClick callback;
     private ArrayList<Livro> livros;
     private final Context context;
 
@@ -28,6 +28,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         this.context = context;
         this.livros = livros;
+    }
+
+    public void setCallback(OnItemClick callback) {
+        this.callback = callback;
     }
 
     @Override
@@ -54,7 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return livros.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView titulo;
         private TextView autor;
@@ -70,7 +74,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             nPaginas = (TextView) itemView.findViewById(R.id.nPaginas);
             ano = (TextView) itemView.findViewById(R.id.ano);
             capa = (ImageView) itemView.findViewById(R.id.imgCapa);
-
+            itemView.setOnClickListener(this);
         }
 
 
@@ -104,12 +108,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             Ocean.glide(context)
                     .load(capa)
                     .build(GlideRequest.BITMAP)
-                    .resize(200,200)
+                    .resize(200,250)
                     .into(this.capa);
         }
 
 
+        @Override
+        public void onClick(View view) {
+
+
+            if (callback != null){
+                callback.onItemClick(view, getPosition());
+
+            }
+        }
+
 
     }
 
+
+    public interface OnItemClick{
+        void onItemClick(View view, int position);
+
+    }
 }

@@ -1,10 +1,12 @@
 package study.android.livrariaocean;
 
+import java.io.Serializable;
+
 /**
  * Created by aluno on 07/10/2016.
  */
 
-public class Livro {
+public class Livro implements Serializable {
     private String capa;
     private String titulo;
     private String autor;
