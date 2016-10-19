@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity implements Request.RequestLi
         Livro livro = livros.get(position);
         Intent intent = new Intent(MainActivity.this, Detalhes.class);
 
-        intent.putExtra("book", livro);
+        intent.putExtra("position", position);
+        intent.putExtra("books", livros);
 
         /*
         intent.putExtra("titulo", livro.getTitulo());

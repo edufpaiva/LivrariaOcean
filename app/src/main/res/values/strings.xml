@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Livraria Ocean</string>
+    <string name="foto_default">Qualquer</string>
 </resources>

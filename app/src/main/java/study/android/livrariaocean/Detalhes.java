@@ -2,22 +2,30 @@ package study.android.livrariaocean;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.oceanbrasil.libocean.Ocean;
 import com.oceanbrasil.libocean.control.glide.GlideRequest;
 
-public class Detalhes extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Random;
 
+public class Detalhes extends AppCompatActivity {
+    int posicao;
+    private ArrayList<Livro> livros;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes);
 
-        Livro livro = (Livro) getIntent().getSerializableExtra("book");
+        posicao = getIntent().getIntExtra("position", 0);
+        livros = (ArrayList<Livro>) getIntent().getSerializableExtra("books");
+        Livro livro = livros.get(posicao);
         setView(livro);
-
+        setRecomendacao(posicao, livros);
 
 
     }
@@ -33,7 +41,7 @@ public class Detalhes extends AppCompatActivity {
         return livro;
     }*/
 
-    private void setView(Livro livro){
+    private void setView(Livro livro) {
 
         ImageView capa = (ImageView) findViewById(R.id.imgCapaDescription);
         TextView titulo = (TextView) findViewById(R.id.nomeLivroDescription);
@@ -48,7 +56,39 @@ public class Detalhes extends AppCompatActivity {
 
         titulo.setText(livro.getTitulo());
         autor.setText(livro.getAutor());
-        ano.setText(livro.getAno()+"");
-        paginas.setText(livro.getPaginas()+"");
+        ano.setText(livro.getAno() + "");
+        paginas.setText(livro.getPaginas() + "");
+    }
+
+    public void setRecomendacao(int posicao, ArrayList<Livro> livros) {
+        Random random = new Random();
+        int a = 0, b = 0;
+
+        do {
+            a = random.nextInt(livros.size());
+            b = random.nextInt(livros.size());
+
+
+        } while (a == b || a == posicao);
+
+        ImageView capaRec1 = (ImageView) findViewById(R.id.rec1);
+        ImageView capaRec2 = (ImageView) findViewById(R.id.rec2);
+
+        Ocean.glide(this)
+                .load(livros.get(a).getCapa())
+                .build(GlideRequest.BITMAP)
+                .into(capaRec1);
+
+        Ocean.glide(this)
+                .load(livros.get(b).getCapa())
+                .build(GlideRequest.BITMAP)
+                .into(capaRec2);
+
+
+    }
+
+    public void mudaRecomendacao(View view){
+        setRecomendacao(posicao, livros);
+
     }
 }
