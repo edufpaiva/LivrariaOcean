@@ -2,6 +2,8 @@ package study.android.livrariaocean;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,6 +18,11 @@ import java.util.Random;
 public class Detalhes extends AppCompatActivity {
     int posicao;
     private ArrayList<Livro> livros;
+    private ArrayList<Comentario> comentarios;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +33,10 @@ public class Detalhes extends AppCompatActivity {
         Livro livro = livros.get(posicao);
         setView(livro);
         setRecomendacao(posicao, livros);
+        iniciaComentarios();
+        criarAdapter(comentarios);
+
+
 
 
     }
@@ -91,4 +102,27 @@ public class Detalhes extends AppCompatActivity {
         setRecomendacao(posicao, livros);
 
     }
+
+    void iniciaComentarios(){
+        comentarios = new ArrayList<>();
+        Comentario a = new Comentario(getString(R.string.comentario_default), "Puro luxo e sedução");
+        Comentario b = new Comentario(getString(R.string.comentario_default), "Puro luxo e sedução");
+        Comentario c = new Comentario(getString(R.string.comentario_default), "Puro luxo e sedução");
+
+        comentarios.add(a);
+        comentarios.add(b);
+        comentarios.add(c);
+
+    }
+
+    public void criarAdapter(ArrayList<Comentario> comentarios) {
+        ComentariosAdapter adapter = new ComentariosAdapter(this, comentarios);
+        RecyclerView recycler = (RecyclerView) findViewById(R.id.comentarios);
+        recycler.setAdapter(adapter);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
+        //adapter.setCallback(this);
+
+
+    }
+
 }

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Livraria Ocean</string>
     <string name="foto_default">Qualquer</string>
+    <string name="comentario_default">http://1.bp.blogspot.com/-SGqmeNUvwc0/VDTxcLvveHI/AAAAAAAACMU/ruvtKwPpIM0/s1600/anon.jpg</string>
 </resources>

@@ -23,10 +23,11 @@
             android:layout_width="match_parent"
             android:layout_height="50sp"
             android:text=""
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textColor="@android:color/black"
             android:textAllCaps="true"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:paddingLeft="10dp"/>
 
     </LinearLayout>
 
