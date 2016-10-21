@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.oceanbrasil.libocean.Ocean;
@@ -19,6 +20,7 @@ public class Detalhes extends AppCompatActivity {
     int posicao;
     private ArrayList<Livro> livros;
     private ArrayList<Comentario> comentarios;
+    Random random = new Random();
 
 
 
@@ -35,6 +37,9 @@ public class Detalhes extends AppCompatActivity {
         setRecomendacao(posicao, livros);
         iniciaComentarios();
         criarAdapter(comentarios);
+        ScrollView scrollView = (ScrollView) findViewById(R.id.scroll_detalhes);
+
+        scrollView.scrollTo(0, 0);
 
 
 
@@ -72,7 +77,7 @@ public class Detalhes extends AppCompatActivity {
     }
 
     public void setRecomendacao(int posicao, ArrayList<Livro> livros) {
-        Random random = new Random();
+
         int a = 0, b = 0;
 
         do {
@@ -104,10 +109,25 @@ public class Detalhes extends AppCompatActivity {
     }
 
     void iniciaComentarios(){
+        ArrayList<String> txtComments = new ArrayList<>();
+        txtComments.add("Fantastico e lindo");
+        txtComments.add("Puro luxo e sedução");
+        txtComments.add("Lixo");
+        txtComments.add("Demais");
+        txtComments.add("5 Estrelas");
+        txtComments.add("Não recomendo");
+        txtComments.add("recomendo a todos");
+        txtComments.add("o ó do borogodó");
+        txtComments.add("to com fome");
+
+
         comentarios = new ArrayList<>();
-        Comentario a = new Comentario(getString(R.string.comentario_default), "Puro luxo e sedução");
-        Comentario b = new Comentario(getString(R.string.comentario_default), "Puro luxo e sedução");
-        Comentario c = new Comentario(getString(R.string.comentario_default), "Puro luxo e sedução");
+
+
+
+        Comentario a = new Comentario(getString(R.string.comentario_default), txtComments.get(random.nextInt(txtComments.size())));
+        Comentario b = new Comentario(getString(R.string.comentario_default), txtComments.get(random.nextInt(txtComments.size())));
+        Comentario c = new Comentario(getString(R.string.comentario_default), txtComments.get(random.nextInt(txtComments.size())));
 
         comentarios.add(a);
         comentarios.add(b);
