@@ -125,9 +125,9 @@ public class Detalhes extends AppCompatActivity {
 
 
 
-        Comentario a = new Comentario(getString(R.string.comentario_default), txtComments.get(random.nextInt(txtComments.size())));
-        Comentario b = new Comentario(getString(R.string.comentario_default), txtComments.get(random.nextInt(txtComments.size())));
-        Comentario c = new Comentario(getString(R.string.comentario_default), txtComments.get(random.nextInt(txtComments.size())));
+        Comentario a = new Comentario(getString(R.string.img_comentario_default), txtComments.get(random.nextInt(txtComments.size())));
+        Comentario b = new Comentario(getString(R.string.img_comentario_default), txtComments.get(random.nextInt(txtComments.size())));
+        Comentario c = new Comentario(getString(R.string.img_comentario_default), txtComments.get(random.nextInt(txtComments.size())));
 
         comentarios.add(a);
         comentarios.add(b);
